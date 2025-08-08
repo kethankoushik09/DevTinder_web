@@ -22,11 +22,25 @@ const LoginPage = () => {
         { withCredentials: true }
       );
       disptach(addUser(user.data));
+      navigate("/feed");
+    } catch (err) {
+      Seterrmsg(err?.response?.data?.message);
+    }
+  };
+  const handleSignupUser = async () => {
+    try {
+      const user = await axios.post(
+        BASE_URL + "/signup",
+        {firstName,lastName, emailId: email, password },
+        { withCredentials: true }
+      );
+      disptach(addUser(user.data.data));
       navigate("/profile");
     } catch (err) {
       Seterrmsg(err?.response?.data?.message);
     }
   };
+
 
   return (
     <div className="flex justify-center my-10">
@@ -85,7 +99,7 @@ const LoginPage = () => {
             </fieldset>
           </div>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary my-5" onClick={handleLoginUser}>
+            <button className="btn btn-primary my-5" onClick={isLoggin ?handleLoginUser:handleSignupUser}>
               {isLoggin ? "Login" : "Signup"}
             </button>
           </div>

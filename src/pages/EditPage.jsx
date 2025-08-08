@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants.jsx";
 // import { useSelector } from "react-redux";
-import Usercard from "../components/userCard.jsx";
+import Usercard from "../components/Usercard.jsx"
 import axios from "axios";
 import { addUser } from "../store/userSlice.js";
 
@@ -19,8 +19,8 @@ const EditPage = ({ user }) => {
   const [lastName, setlastName] = useState(user.lastName);
   const [age, setage] = useState(user.age);
   const [gender, setgender] = useState(user.gender);
-  const [about, setabout] = useState(user.about);
-  const [photoUrl, setphotoUrl] = useState(user.photoUrl);
+  const [about, setabout] = useState(user.about || "");
+  const [photoUrl, setphotoUrl] = useState(user.photoUrl|| "");
   const [err, seterr] = useState("");
   const [showToast, setshowToast] = useState(false);
 
@@ -38,6 +38,7 @@ const EditPage = ({ user }) => {
           age,
           gender,
           about,
+          photoUrl,
         },
         { withCredentials: true }
       );
@@ -154,7 +155,7 @@ const EditPage = ({ user }) => {
 
         <div className="my-20">
           <Usercard
-            user={{ firstName, lastName, age, gender, about, photoUrl }}
+            user={{ firstName, lastName, age, gender, about, photoUrl}}
           />
         </div>
       </div>
