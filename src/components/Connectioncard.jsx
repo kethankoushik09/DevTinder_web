@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Connectioncard = ({users}) => {
   return (
@@ -24,7 +25,9 @@ const Connectioncard = ({users}) => {
           <p className="list-col-wrap text-xs">
             {itm.about}
           </p>
+          <Link to={`/chat/${itm._id}`}>
           <button className="btn btn-info">Chat</button>
+          </Link>
         </li>
 
         ))}

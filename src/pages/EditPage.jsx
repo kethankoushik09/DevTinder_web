@@ -42,13 +42,13 @@ const EditPage = ({ user }) => {
         },
         { withCredentials: true }
       );
-      console.log(res.data.dta);
+      console.log(res.data.data);
 
       dispatch(addUser(res.data.data));
       setshowToast(true);
       console.log("toast");
 
-      setInterval(() => {
+      setTimeout(() => {
         setshowToast(false);
       }, 3000);
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../store/userSlice.js";
-import { addFeed } from "../store/feedSlice.js";
+// import { addFeed } from "../store/feedSlice.js";
 import RequestsPage from "../pages/RequestsPage.jsx";
 import { cleardata} from "../store/requestSlice.js";
 const Navbar = () => {
@@ -23,17 +23,19 @@ const Navbar = () => {
     }
   }
 
-  async function handleFeed() {
-    try {
-      const feed = await axios.get(BASE_URL + "/feed", {
-        withCredentials: true,
-      });
-      disptach(addFeed(feed.data));
-      navigate("/feed");
-    } catch (err) {
-      console.log("Fetch error:", err.message);
-    }
-  }
+  // async function handleFeed() {
+  //   console.log("hiii");
+    
+  //   try {
+  //     const feed = await axios.get(BASE_URL + "/feed", {
+  //       withCredentials: true,
+  //     });
+  //     disptach(addFeed(feed.data));
+  //     navigate("/feed");
+  //   } catch (err) {
+  //     console.log("Fetch error:", err.message);
+  //   }
+  // }
 
   // function 
 
@@ -70,13 +72,16 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <a onClick={handleFeed}>feed</a>
+                  <Link to="/feed">feed</Link>
                 </li>
                 <li>
                   <Link to="/requests">requests</Link>
                 </li>
                 <li>
                   <Link to="/connections">connections</Link>
+                </li>
+                <li>
+                  <Link to="/chat">chat</Link>
                 </li>
                 <li>
                   <a onClick={handleLogout}>Logout</a>
