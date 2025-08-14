@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import createSocketConnection from "../utils/socket";
+import createSocketConnection from "../utils/socket.js";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 

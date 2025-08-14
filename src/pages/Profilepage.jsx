@@ -1,5 +1,5 @@
 import React from 'react'
-import EditPage from './EditPage'
+import EditPage from './EditPage.jsx'
 import { useSelector } from 'react-redux';
 
 const ProfilePage = () => {
