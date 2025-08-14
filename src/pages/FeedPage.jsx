@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL } from "../utils/constants.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { addFeed,removefeed } from "../store/feedSlice";
-import Usercard from "../components/Usercard"
+import { addFeed,removefeed } from "../store/feedSlice.js";
+import Usercard from "../components/Usercard.jsx"
 
 const FeedPage = () => {
   // const user = useSelector((state) => state.user);
