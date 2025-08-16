@@ -1,18 +1,13 @@
-// import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { addUser } from "../store/userSlice";
-// import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../utils/constants.jsx";
-// import { useSelector } from "react-redux";
-import Usercard from "../components/Usercard.jsx"
 import axios from "axios";
+import { BASE_URL } from "../utils/constants.jsx";
 import { addUser } from "../store/userSlice.js";
+import Usercard from "../components/Usercard.jsx";
 
 const EditPage = ({ user }) => {
   console.log("profile");
 
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [firstName, setfirstName] = useState(user.firstName);
@@ -20,12 +15,11 @@ const EditPage = ({ user }) => {
   const [age, setage] = useState(user.age);
   const [gender, setgender] = useState(user.gender);
   const [about, setabout] = useState(user.about || "");
-  const [photoUrl, setphotoUrl] = useState(user.photoUrl|| "");
+  const [photoUrl, setphotoUrl] = useState(user.photoUrl || "");
   const [err, seterr] = useState("");
   const [showToast, setshowToast] = useState(false);
 
   async function SaveProfile() {
-    // const dispatch = useDispatch();
     console.log("update");
     seterr("");
 
@@ -46,7 +40,6 @@ const EditPage = ({ user }) => {
 
       dispatch(addUser(res.data.data));
       setshowToast(true);
-      console.log("toast");
 
       setTimeout(() => {
         setshowToast(false);
@@ -65,23 +58,26 @@ const EditPage = ({ user }) => {
         <div className="w-full flex justify-center mt-4">
           <div className="tooltip tooltip-open">
             <button className="btn btn-success">
-              Profile saved successsfully!
+              Profile saved successfully!
             </button>
           </div>
         </div>
       )}
-      <div className=" flex justify-center gap-x-10">
-        <div className="flex justify-center my-10">
-          <div className="card bg-base-300 w-96 shadow-sm">
+
+      {/* Responsive Layout */}
+      <div className="flex flex-col md:flex-row justify-center gap-6 px-4 md:px-10">
+        {/* Form Section */}
+        <div className="flex justify-center my-6 md:my-10 w-full md:w-auto">
+          <div className="card bg-base-300 w-full md:w-96 shadow-sm">
             <div className="card-body">
               <h2 className="card-title">Edit Profile</h2>
-              <div>
+              <div className="space-y-3">
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend">First Name : </legend>
                   <input
                     type="text"
-                    className="input"
-                    placeholder="firstName"
+                    className="input w-full"
+                    placeholder="First Name"
                     value={firstName}
                     onChange={(e) => setfirstName(e.target.value)}
                     required
@@ -91,8 +87,8 @@ const EditPage = ({ user }) => {
                   <legend className="fieldset-legend">Last Name : </legend>
                   <input
                     type="text"
-                    className="input"
-                    placeholder="password"
+                    className="input w-full"
+                    placeholder="Last Name"
                     value={lastName}
                     onChange={(e) => setlastName(e.target.value)}
                     required
@@ -101,9 +97,9 @@ const EditPage = ({ user }) => {
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend">Age : </legend>
                   <input
-                    type="Number"
-                    className="input"
-                    placeholder="age"
+                    type="number"
+                    className="input w-full"
+                    placeholder="Age"
                     value={age}
                     onChange={(e) => setage(e.target.value)}
                     required
@@ -113,19 +109,19 @@ const EditPage = ({ user }) => {
                   <legend className="fieldset-legend">Gender : </legend>
                   <input
                     type="text"
-                    className="input"
-                    placeholder="gender"
+                    className="input w-full"
+                    placeholder="Gender"
                     value={gender}
                     onChange={(e) => setgender(e.target.value)}
                     required
                   />
                 </fieldset>
                 <fieldset className="fieldset">
-                  <legend className="fieldset-legend">photoUrl : </legend>
+                  <legend className="fieldset-legend">Photo URL : </legend>
                   <input
                     type="text"
-                    className="input"
-                    placeholder="Url"
+                    className="input w-full"
+                    placeholder="Photo URL"
                     value={photoUrl}
                     onChange={(e) => setphotoUrl(e.target.value)}
                     required
@@ -133,19 +129,24 @@ const EditPage = ({ user }) => {
                 </fieldset>
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend">About : </legend>
-                  <input
-                    type="text"
-                    className="input"
-                    placeholder="about"
+                  <textarea
+                    className="textarea textarea-bordered w-full"
+                    placeholder="About"
                     value={about}
                     onChange={(e) => setabout(e.target.value)}
                     required
                   />
                 </fieldset>
               </div>
-              {err && <button className="btn btn-dash btn-error">{err}</button>}
+
+              {err && (
+                <button className="btn btn-dash btn-error w-full mt-4">
+                  {err}
+                </button>
+              )}
+
               <div className="card-actions justify-center mt-6">
-                <button className="btn btn-primary" onClick={SaveProfile}>
+                <button className="btn btn-primary w-full" onClick={SaveProfile}>
                   Save profile
                 </button>
               </div>
@@ -153,9 +154,10 @@ const EditPage = ({ user }) => {
           </div>
         </div>
 
-        <div className="my-20">
+        {/* Preview Section */}
+        <div className="my-6 md:my-20 flex justify-center w-full md:w-auto">
           <Usercard
-            user={{ firstName, lastName, age, gender, about, photoUrl}}
+            user={{ firstName, lastName, age, gender, about, photoUrl }}
           />
         </div>
       </div>
