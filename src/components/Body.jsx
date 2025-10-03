@@ -17,8 +17,13 @@ const Body = () => {
         withCredentials: true,
       });
       dispatch(addUser(res.data));
+      if (location.pathname === "/") {
+        navigator("/feed");
+      }
     } catch (err) {
       if (err.response?.status === 401) {
+        console.log("trigger");
+        
         navigator("/login");
       }
     }
